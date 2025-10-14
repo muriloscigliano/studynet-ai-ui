@@ -83,6 +83,20 @@ body {
 
 .container-max {
   max-width: 1484px;
+  width: 100%;
+  padding: 0 16px;
+}
+
+@media (min-width: 769px) {
+  .container-max {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-max {
+    padding: 0;
+  }
 }
 
 /* Page layout */
@@ -1269,26 +1283,100 @@ color: var(--text);
     max-width: 100%;
   }
 
-  /* Pricing page mobile */
-  .plans-grid {
-    grid-template-columns: 1fr;
+  /* Index page mobile */
+  .center {
+    gap: 32px;
+    padding: 0 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-header {
     gap: 16px;
+    width: 100%;
+  }
+
+  .hero-title {
+    gap: 16px;
+    width: 100%;
+  }
+
+  .headline {
+    font-size: 32px;
+    letter-spacing: 0.96px;
+  }
+
+  .subcopy {
+    font-size: 16px;
+    letter-spacing: 0.48px;
+    margin-top: 12px;
+  }
+
+  .composer-wrapper {
+    width: 100%;
+    max-width: 100%;
   }
 
   /* Chat composer mobile */
   .composer {
     min-height: auto;
+    width: 100%;
+  }
+
+  .composer-inner {
+    padding: 16px;
+  }
+
+  .composer-controls {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .send-btn {
+    width: 100%;
+    justify-content: center;
   }
 
   /* Chips mobile */
   .chips {
     flex-wrap: wrap;
     gap: 8px;
+    width: 100%;
   }
 
   .chip {
-    font-size: 14px;
-    padding: 10px 16px;
+    font-size: 13px;
+    padding: 10px 14px;
+    flex: 1 1 auto;
+    min-width: calc(50% - 4px);
+    justify-content: center;
+  }
+
+  /* CTA row mobile */
+  .cta-row {
+    width: 100%;
+    padding: 0 16px;
+  }
+
+  .cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Pricing page mobile */
+  .plans-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .plan-card {
+    max-width: 100%;
+  }
+
+  .plan-summary,
+  .plan-features {
+    width: 100%;
   }
 
   /* Login page mobile */
@@ -1301,10 +1389,28 @@ color: var(--text);
     padding: 24px 16px;
   }
 
-  /* Hide login trigger on very small screens */
+  /* Very small screens adjustments */
   @media (max-width: 480px) {
     .login-trigger {
       display: none;
+    }
+
+    .headline {
+      font-size: 28px;
+    }
+
+    .subcopy {
+      font-size: 15px;
+    }
+
+    .chip {
+      min-width: 100%;
+      font-size: 12px;
+    }
+
+    .plan-pill {
+      font-size: 14px;
+      padding: 8px 14px;
     }
   }
 }
