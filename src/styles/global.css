@@ -122,12 +122,13 @@ body {
   background: var(--primary);
   border: 1px solid var(--primary-border);
   color: #fff;
-  padding: 8px 16px;
+  padding: 10px 16px 9px 10px;
   min-height: 40px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
   letter-spacing: 0.42px;
+  font-weight: 500;
 }
 .new-chat:hover {
   background: #b22871;
