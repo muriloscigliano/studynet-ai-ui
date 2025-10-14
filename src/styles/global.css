@@ -140,16 +140,17 @@ body {
   width: 24px;
   height: 24px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.15);
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--primary);
   transition: all 0.3s ease;
 }
 
 .new-chat:hover .new-chat-icon {
-  background: rgba(255, 255, 255, 0.25);
+  background: #fff;
+  transform: scale(1.05);
 }
 .divider {
   height: 1px;
