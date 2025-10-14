@@ -7,8 +7,12 @@ export default function AnimatedBackground() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const gl = canvas.getContext('webgl');
-    if (!gl) return;
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl') as WebGLRenderingContext;
+    if (!gl) {
+      console.error('WebGL not supported');
+      return;
+    }
+    console.log('WebGL initialized successfully');
 
     let animationId: number;
 
@@ -67,12 +71,12 @@ export default function AnimatedBackground() {
         vec2 pos = gl_FragCoord.xy;
         
         // Animated waves
-        float wave1 = sin(uv.x * 3.0 + time * 0.5) * 0.5 + 0.5;
-        float wave2 = cos(uv.y * 4.0 + time * 0.3) * 0.5 + 0.5;
-        float wave3 = sin(length(uv - 0.5) * 8.0 - time * 0.4) * 0.5 + 0.5;
+        float wave1 = sin(uv.x * 2.0 + time * 0.6) * 0.5 + 0.5;
+        float wave2 = cos(uv.y * 2.5 + time * 0.4) * 0.5 + 0.5;
+        float wave3 = sin(length(uv - 0.5) * 5.0 - time * 0.5) * 0.5 + 0.5;
         
         // Combine waves
-        float pattern = (wave1 + wave2 + wave3) / 3.0;
+        float pattern = (wave1 * 0.4 + wave2 * 0.3 + wave3 * 0.3);
         
         // Apply Bayer dithering
         float threshold = bayer8(pos);
@@ -83,9 +87,9 @@ export default function AnimatedBackground() {
         vec3 color2 = vec3(0.608, 0.125, 0.392); // Primary pink #9B2064
         vec3 color3 = vec3(0.698, 0.290, 0.514); // Primary border #B24A83
         
-        // Mix colors based on pattern
-        vec3 baseColor = mix(color1, color2, pattern * 0.3);
-        vec3 finalColor = mix(baseColor, color3, dithered * 0.15);
+        // More visible dithering effect
+        vec3 baseColor = mix(color1, color2, pattern * 0.5);
+        vec3 finalColor = mix(baseColor, color3, dithered * 0.25);
         
         gl_FragColor = vec4(finalColor, 1.0);
       }
