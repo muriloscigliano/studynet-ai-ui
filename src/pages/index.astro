@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import AppShell from "../components/AppShell.astro";
+import Header from "../components/Header.astro";
 import ChatComposer from "../components/ChatComposer";
 import PageAnimations from "../components/PageAnimations";
 import AnimatedText from "../components/AnimatedText";
@@ -22,6 +23,7 @@ const copyItems = [
 
 const buttonItems = [
   "Upgrade Pro Plan",
+  "Login",
 ];
 
 function onSend(value: string) {
@@ -31,10 +33,7 @@ function onSend(value: string) {
 ---
 <Layout title="StudyNet">
   <AppShell>
-    <div class="header-row">
-      <a href="/login" class="login-trigger">Login / Sign Up</a>
-      <button class="header-icon" id="themeToggle" aria-label="Toggle theme"></button>
-    </div>
+    <Header loginText={buttonItems[1]} />
 
     <section class="center container-max">
       <div class="hero-header">
