@@ -51,7 +51,7 @@ function onSend(value: string) {
           <button class="chip">
             <span>{s}</span>
             <span class="chip-icon">
-              <ArrowUp width={12} height={12} />
+              <ArrowUp width={12} height={12} strokeWidth={2} style={{ color: 'var(--text)' }} />
             </span>
           </button>
         ))}
@@ -62,7 +62,7 @@ function onSend(value: string) {
       <button class="cta" data-navigate="/pricing">
         <span>{buttonItems[0]}</span>
         <span class="chip-icon">
-          <ArrowUp width={16} height={16} />
+          <ArrowUp width={16} height={16} strokeWidth={2} style={{ color: 'var(--text)' }} />
         </span>
       </button>
     </div>

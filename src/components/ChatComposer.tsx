@@ -37,10 +37,10 @@ export default function ChatComposer({ placeholder = "Ask anything here", onSend
         <label htmlFor="composer" className="composer-label">{placeholder}</label>
         <div className="composer-controls">
           <div className="tool-group">
-            <div className="circle bg"><Sparkles width={14} height={14} color="var(--muted)" /></div>
-            <button type="button" className="circle" aria-label="Open search"><Search width={16} height={16} color="var(--muted)" /></button>
+            <div className="circle bg"><Sparkles width={14} height={14} strokeWidth={2} style={{ color: 'var(--muted)' }} /></div>
+            <button type="button" className="circle" aria-label="Open search"><Search width={16} height={16} strokeWidth={2} style={{ color: 'var(--muted)' }} /></button>
           </div>
-          <button type="button" aria-label="Send" onClick={submit} className="send-btn"><ArrowUp width={16} height={16} /></button>
+          <button type="button" aria-label="Send" onClick={submit} className="send-btn"><ArrowUp width={16} height={16} strokeWidth={2} style={{ color: 'var(--text)' }} /></button>
         </div>
         <textarea id="composer" ref={textareaRef} value={value} onChange={(e) => setValue(e.target.value)} onKeyDown={handleKeyDown} className="sr-only" />
       </div>
