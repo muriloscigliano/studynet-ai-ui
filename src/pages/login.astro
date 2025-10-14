@@ -1,7 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import AuthForm from "../components/AuthForm";
-import AnimatedBackground from "../components/AnimatedBackground";
+import AnimatedText from "../components/AnimatedText";
+import LoginAnimations from "../components/LoginAnimations";
 
 // Page content
 const pageTitle = "Login — StudyNet.AI";
@@ -10,9 +11,6 @@ const heroTitle = "Unlock your next step with Studynet.AI";
 const footerText = "Smart tools for students, counsellors, and institutions.";
 ---
 <Layout title={pageTitle}>
-  <!-- Animated Background -->
-  <AnimatedBackground client:load />
-  
   <div class="login-page">
     <!-- Header -->
     <div class="login-page-header">
@@ -33,11 +31,13 @@ const footerText = "Smart tools for students, counsellors, and institutions.";
       <!-- Hero Text -->
       <div class="login-page-hero">
         <div class="login-page-pill">{heroPill}</div>
-        <h1 class="login-page-title">{heroTitle}</h1>
+        <AnimatedText text={heroTitle} className="login-page-title" delay={0.3} client:load />
       </div>
 
       <!-- Auth Form (Login/Signup) -->
-      <AuthForm client:load />
+      <div class="login-card-wrapper">
+        <AuthForm client:load />
+      </div>
 
       <!-- Footer Text -->
       <p class="login-page-footer">
@@ -45,6 +45,8 @@ const footerText = "Smart tools for students, counsellors, and institutions.";
       </p>
     </div>
   </div>
+
+  <LoginAnimations client:load />
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {

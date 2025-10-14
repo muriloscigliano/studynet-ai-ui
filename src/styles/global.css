@@ -577,6 +577,12 @@ color: var(--text);
   z-index: 1;
 }
 
+.login-page-pill,
+.login-page-title,
+.login-card-wrapper {
+  opacity: 0;
+}
+
 .login-page-header {
   display: flex;
   justify-content: space-between;
