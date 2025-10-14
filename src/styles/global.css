@@ -1170,3 +1170,160 @@ color: var(--text);
 .settings-toggle.active .settings-toggle-thumb {
   transform: translateX(20px);
 }
+
+/* Mobile Responsive Styles */
+.mobile-menu-btn {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+  background: var(--card);
+  border-color: var(--primary);
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* Mobile Breakpoints */
+@media (max-width: 768px) {
+  /* Show hamburger button */
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  /* Hide sidebar by default on mobile */
+  .sidebar {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    height: 100vh;
+    width: 280px;
+    z-index: 1000;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.mobile-open {
+    left: 0;
+  }
+
+  /* Overlay when menu is open */
+  .page.menu-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  /* Adjust main content for full width on mobile */
+  .main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  /* Adjust shell layout */
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  /* Header adjustments */
+  .header-row {
+    justify-content: space-between;
+  }
+
+  /* Settings page mobile */
+  .settings-content {
+    max-width: 100%;
+  }
+
+  .settings-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 16px;
+  }
+
+  .settings-item-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .settings-item-input,
+  .settings-item-textarea,
+  .settings-item-select {
+    max-width: 100%;
+  }
+
+  /* Pricing page mobile */
+  .plans-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Chat composer mobile */
+  .composer {
+    min-height: auto;
+  }
+
+  /* Chips mobile */
+  .chips {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .chip {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  /* Login page mobile */
+  .login-page-card {
+    max-width: 100%;
+    padding: 24px;
+  }
+
+  .login-page-main {
+    padding: 24px 16px;
+  }
+
+  /* Hide login trigger on very small screens */
+  @media (max-width: 480px) {
+    .login-trigger {
+      display: none;
+    }
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sidebar {
+    width: 240px;
+  }
+
+  .main {
+    margin-left: 240px;
+  }
+
+  .plans-grid {
+    gap: 16px;
+  }
+
+  .settings-content {
+    max-width: 700px;
+  }
+}

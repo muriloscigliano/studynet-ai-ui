@@ -1,5 +1,7 @@
 ---
 // Header component with login link and theme toggle
+import { Menu } from "lucide-react";
+
 interface Props {
   loginText?: string;
 }
@@ -7,8 +9,13 @@ interface Props {
 const { loginText = "Login" } = Astro.props;
 ---
 <div class="header-row">
-  <a href="/login" class="login-trigger">{loginText}</a>
-  <div class="theme-toggle-wrapper">
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+    <Menu width={20} height={20} strokeWidth={2} />
+  </button>
+  
+  <div class="header-actions">
+    <a href="/login" class="login-trigger">{loginText}</a>
+    <div class="theme-toggle-wrapper">
     <button class="theme-toggle-btn" data-theme="dark" aria-label="Dark mode">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -27,6 +34,7 @@ const { loginText = "Login" } = Astro.props;
         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
       </svg>
     </button>
+  </div>
   </div>
 </div>
 

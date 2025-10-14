@@ -134,5 +134,45 @@ const copyItems = [
   } else {
     setupNavigation();
   }
+
+  // Mobile menu toggle
+  function setupMobileMenu() {
+    const sidebar = document.querySelector('.sidebar');
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const page = document.querySelector('.page');
+    
+    if (!menuBtn || !sidebar || !page) return;
+
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('mobile-open');
+      page.classList.toggle('menu-open');
+    });
+
+    // Close menu when clicking outside
+    page.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (sidebar.classList.contains('mobile-open') && 
+          !sidebar.contains(target) && 
+          !menuBtn.contains(target)) {
+        sidebar.classList.remove('mobile-open');
+        page.classList.remove('menu-open');
+      }
+    });
+
+    // Close menu after navigation
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('[data-navigate]') && sidebar.classList.contains('mobile-open')) {
+        sidebar.classList.remove('mobile-open');
+        page.classList.remove('menu-open');
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupMobileMenu);
+  } else {
+    setupMobileMenu();
+  }
 </script>
 
