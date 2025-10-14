@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import AuthForm from "../components/AuthForm";
+import AnimatedBackground from "../components/AnimatedBackground";
 
 // Page content
 const pageTitle = "Login — StudyNet.AI";
@@ -9,6 +10,9 @@ const heroTitle = "Unlock your next step with Studynet.AI";
 const footerText = "Smart tools for students, counsellors, and institutions.";
 ---
 <Layout title={pageTitle}>
+  <!-- Animated Background -->
+  <AnimatedBackground client:load />
+  
   <div class="login-page">
     <!-- Header -->
     <div class="login-page-header">

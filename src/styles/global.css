@@ -568,12 +568,13 @@ color: var(--text);
 
 /* Login Page */
 .login-page {
+  position: relative;
   width: 100vw;
   height: 100vh;
-  background: var(--bg);
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  z-index: 1;
 }
 
 .login-page-header {
@@ -704,6 +705,7 @@ color: var(--text);
   letter-spacing: 0.6px;
   font-weight: 500;
   transition: all 0.3s ease;
+  margin-bottom: 36px;
 }
 
 .login-page-btn:hover {
