@@ -138,15 +138,17 @@ export default function AuthForm() {
         )}
       </form>
 
-      {/* Divider */}
-      <div className="login-page-divider">
-        <span className="login-page-divider-line"></span>
-        <span className="login-page-divider-text">OR</span>
-        <span className="login-page-divider-line"></span>
-      </div>
+      {/* Divider and Social Login (only for login mode) */}
+      {mode === 'login' && (
+        <>
+          <div className="login-page-divider">
+            <span className="login-page-divider-line"></span>
+            <span className="login-page-divider-text">OR</span>
+            <span className="login-page-divider-line"></span>
+          </div>
 
-      {/* Social Login */}
-      <div className="login-page-social">
+          {/* Social Login */}
+          <div className="login-page-social">
         <button 
           type="button" 
           className="login-page-social-btn"
@@ -172,6 +174,8 @@ export default function AuthForm() {
           <span>Sign in with Facebook</span>
         </button>
       </div>
+        </>
+      )}
 
       {/* Toggle Link */}
       <p className="login-page-signup">
