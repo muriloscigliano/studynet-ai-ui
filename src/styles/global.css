@@ -24,7 +24,7 @@
   --card: #1a1b2c;
   --card-border: #212339;
   --input: #151727;
-  --input-border: #181a2b;
+  --input-border: #2c2f4a;
   --primary: #9b2064;
   --primary-border: #b24a83;
   --text: #e9e9ee;
@@ -581,7 +581,6 @@ color: var(--text);
   justify-content: space-between;
   align-items: center;
   padding: 12px 24px;
-  border-bottom: 1px solid var(--panel-border);
   max-width: 1704px;
   width: 100%;
   margin: 0 auto;
@@ -623,7 +622,7 @@ color: var(--text);
 
 .login-page-hero {
   text-align: center;
-  max-width: 472px;
+  max-width: 499px;
 }
 
 .login-page-pill {

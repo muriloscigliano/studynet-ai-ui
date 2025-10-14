@@ -4,7 +4,7 @@ interface Props {
   loginText?: string;
 }
 
-const { loginText = "Login / Sign Up" } = Astro.props;
+const { loginText = "Login" } = Astro.props;
 ---
 <div class="header-row">
   <a href="/login" class="login-trigger">{loginText}</a>
