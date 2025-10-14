@@ -1,5 +1,11 @@
 ---
 // Shared app shell with sidebar
+
+const copyItems = [
+  "New Chat",
+  "Chats",
+  "Settings",
+];
 ---
 <div class="page">
   <div class="shell">
@@ -11,10 +17,10 @@
         </div>
         <button class="new-chat" data-navigate="/">
           <span class="icon"></span>
-          <span>New Chat</span>
+          <span>{copyItems[0]}</span>
         </button>
         <div class="divider"></div>
-        <div class="section-title">Chats</div>
+        <div class="section-title">{copyItems[1]}</div>
         <ul class="chats-list">
           <li class="chat-item">Best nurse degree...</li>
           <li class="chat-item">Sydney universities d...</li>
@@ -26,7 +32,7 @@
         <div class="divider divider-bottom"></div>
         <button class="settings-btn">
           <span class="icon"></span>
-          <span>Settings</span>
+          <span>{copyItems[2]}</span>
         </button>
       </div>
     </aside>
