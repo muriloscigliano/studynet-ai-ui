@@ -994,3 +994,111 @@ color: var(--text);
   border-color: var(--primary);
   transform: translateY(-1px);
 }
+
+.settings-item-action-primary {
+  background: var(--primary);
+  border-color: var(--primary-border);
+  color: #fff;
+}
+
+.settings-item-action-primary:hover {
+  background: #b22871;
+  border-color: #c5588f;
+}
+
+.settings-item-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.settings-item-value {
+  font-size: 14px;
+  letter-spacing: 0.42px;
+  color: var(--text);
+  opacity: 0.7;
+}
+
+.settings-item-input {
+  width: 100%;
+  max-width: 400px;
+  background: var(--input);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text);
+  font-size: 14px;
+  letter-spacing: 0.42px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.settings-item-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--bg);
+}
+
+.settings-item-select {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: var(--text);
+  font-size: 14px;
+  letter-spacing: 0.42px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 180px;
+}
+
+.settings-item-select:hover {
+  background: var(--bg);
+  border-color: var(--primary);
+}
+
+.settings-item-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Toggle Switch */
+.settings-toggle {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: var(--panel-border);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  padding: 0;
+}
+
+.settings-toggle:hover {
+  background: var(--input-border);
+}
+
+.settings-toggle.active {
+  background: var(--primary);
+}
+
+.settings-toggle.active:hover {
+  background: #b22871;
+}
+
+.settings-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 999px;
+  transition: transform 0.3s ease;
+}
+
+.settings-toggle.active .settings-toggle-thumb {
+  transform: translateX(20px);
+}

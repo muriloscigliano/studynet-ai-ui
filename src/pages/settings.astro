@@ -4,6 +4,7 @@ import AppShell from "../components/AppShell.astro";
 import Header from "../components/Header.astro";
 import PageAnimations from "../components/PageAnimations";
 import AnimatedText from "../components/AnimatedText";
+import SettingsItem from "../components/SettingsItem";
 
 // Page content
 const pageTitle = "Settings — StudyNet.AI";
@@ -18,18 +19,26 @@ const accountSection = {
   title: "Account",
   items: [
     {
-      label: "Profile Details",
-      description: "Update your name, email, and profile picture",
-      action: "Edit Profile"
+      label: "Name",
+      value: "John Doe",
+      type: "input"
+    },
+    {
+      label: "Email",
+      value: "john.doe@example.com",
+      type: "input"
     },
     {
       label: "Plan",
-      description: "Free Plan • Upgrade to unlock advanced features",
-      action: "Upgrade to Pro"
+      value: "Free Plan",
+      type: "action",
+      action: "Upgrade to Pro",
+      isPrimary: true
     },
     {
       label: "Payment Method",
-      description: "No payment method added",
+      value: "No payment method added",
+      type: "action",
       action: "Add Payment"
     }
   ]
@@ -41,18 +50,19 @@ const preferencesSection = {
   items: [
     {
       label: "Language",
-      description: "English",
-      action: "Change"
+      value: "English",
+      type: "select",
+      options: ["English", "Spanish", "French", "German", "Portuguese"]
     },
     {
-      label: "Notifications",
-      description: "Email notifications enabled",
-      action: "Manage"
+      label: "Email Notifications",
+      value: true,
+      type: "toggle"
     },
     {
-      label: "Privacy",
-      description: "Control your data and privacy settings",
-      action: "Manage"
+      label: "Marketing Emails",
+      value: false,
+      type: "toggle"
     }
   ]
 };
@@ -62,19 +72,22 @@ const personalizationSection = {
   title: "Personalization",
   items: [
     {
-      label: "Theme",
-      description: "Automatically switch between light and dark mode",
-      action: "Customize"
+      label: "Theme Mode",
+      value: "System",
+      type: "select",
+      options: ["System", "Dark", "Light"]
     },
     {
-      label: "Study Goals",
-      description: "Set your academic and career goals",
-      action: "Set Goals"
+      label: "Study Goal",
+      value: "Undergraduate Degree",
+      type: "select",
+      options: ["Undergraduate Degree", "Graduate Degree", "Certificate", "Language Course", "Exchange Program"]
     },
     {
-      label: "Interests",
-      description: "Customize your study recommendations",
-      action: "Update"
+      label: "Country of Interest",
+      value: "Australia",
+      type: "select",
+      options: ["Australia", "United States", "United Kingdom", "Canada", "Germany", "Other"]
     }
   ]
 };
@@ -98,13 +111,15 @@ const personalizationSection = {
           <h2 class="settings-section-title">{accountSection.title}</h2>
           <div class="settings-list">
             {accountSection.items.map((item) => (
-              <div class="settings-item">
-                <div class="settings-item-info">
-                  <div class="settings-item-label">{item.label}</div>
-                  <div class="settings-item-description">{item.description}</div>
-                </div>
-                <button class="settings-item-action">{item.action}</button>
-              </div>
+              <SettingsItem
+                label={item.label}
+                value={item.value}
+                type={item.type}
+                options={item.options}
+                action={item.action}
+                isPrimary={item.isPrimary}
+                client:load
+              />
             ))}
           </div>
         </div>
@@ -114,13 +129,13 @@ const personalizationSection = {
           <h2 class="settings-section-title">{preferencesSection.title}</h2>
           <div class="settings-list">
             {preferencesSection.items.map((item) => (
-              <div class="settings-item">
-                <div class="settings-item-info">
-                  <div class="settings-item-label">{item.label}</div>
-                  <div class="settings-item-description">{item.description}</div>
-                </div>
-                <button class="settings-item-action">{item.action}</button>
-              </div>
+              <SettingsItem
+                label={item.label}
+                value={item.value}
+                type={item.type}
+                options={item.options}
+                client:load
+              />
             ))}
           </div>
         </div>
@@ -130,13 +145,13 @@ const personalizationSection = {
           <h2 class="settings-section-title">{personalizationSection.title}</h2>
           <div class="settings-list">
             {personalizationSection.items.map((item) => (
-              <div class="settings-item">
-                <div class="settings-item-info">
-                  <div class="settings-item-label">{item.label}</div>
-                  <div class="settings-item-description">{item.description}</div>
-                </div>
-                <button class="settings-item-action">{item.action}</button>
-              </div>
+              <SettingsItem
+                label={item.label}
+                value={item.value}
+                type={item.type}
+                options={item.options}
+                client:load
+              />
             ))}
           </div>
         </div>
