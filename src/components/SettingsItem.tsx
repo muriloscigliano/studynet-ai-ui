@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 type SettingsItemProps = {
   label: string;
   value: string | boolean;
-  type: 'input' | 'select' | 'toggle' | 'action';
+  type: 'input' | 'select' | 'toggle' | 'action' | 'textarea';
   options?: string[];
   action?: string;
   isPrimary?: boolean;
+  placeholder?: string;
 };
 
 export default function SettingsItem({
@@ -15,7 +16,8 @@ export default function SettingsItem({
   type,
   options = [],
   action,
-  isPrimary = false
+  isPrimary = false,
+  placeholder = ''
 }: SettingsItemProps) {
   const [currentValue, setCurrentValue] = useState(value);
   const [isEditing, setIsEditing] = useState(false);
@@ -57,6 +59,23 @@ export default function SettingsItem({
           />
         )}
 
+        {/* Textarea Type */}
+        {type === 'textarea' && !isEditing && (
+          <div className="settings-item-value settings-item-value-multiline">
+            {currentValue as string}
+          </div>
+        )}
+        {type === 'textarea' && isEditing && (
+          <textarea
+            className="settings-item-textarea"
+            value={currentValue as string}
+            onChange={(e) => setCurrentValue(e.target.value)}
+            placeholder={placeholder}
+            rows={4}
+            autoFocus
+          />
+        )}
+
         {/* Select Type */}
         {type === 'select' && (
           <select
@@ -90,7 +109,7 @@ export default function SettingsItem({
 
       {/* Action Buttons */}
       <div className="settings-item-actions">
-        {type === 'input' && !isEditing && (
+        {(type === 'input' || type === 'textarea') && !isEditing && (
           <button
             className="settings-item-action"
             onClick={() => setIsEditing(true)}
@@ -99,7 +118,7 @@ export default function SettingsItem({
           </button>
         )}
         
-        {type === 'input' && isEditing && (
+        {(type === 'input' || type === 'textarea') && isEditing && (
           <>
             <button
               className="settings-item-action"

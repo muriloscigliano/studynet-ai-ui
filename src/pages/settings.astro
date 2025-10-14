@@ -55,6 +55,12 @@ const preferencesSection = {
       options: ["English", "Spanish", "French", "German", "Portuguese"]
     },
     {
+      label: "Theme Mode",
+      value: "System",
+      type: "select",
+      options: ["System", "Dark", "Light"]
+    },
+    {
       label: "Email Notifications",
       value: true,
       type: "toggle"
@@ -72,10 +78,10 @@ const personalizationSection = {
   title: "Personalization",
   items: [
     {
-      label: "Theme Mode",
-      value: "System",
-      type: "select",
-      options: ["System", "Dark", "Light"]
+      label: "About Me",
+      value: "I'm a student looking to pursue higher education in Computer Science. I'm interested in AI and machine learning, and I'd love to study in Australia or the UK.",
+      type: "textarea",
+      placeholder: "Tell us about yourself, your goals, and what you're looking for..."
     },
     {
       label: "Study Goal",
@@ -150,6 +156,7 @@ const personalizationSection = {
                 value={item.value}
                 type={item.type}
                 options={item.options}
+                placeholder={item.placeholder}
                 client:load
               />
             ))}

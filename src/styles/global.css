@@ -1039,6 +1039,35 @@ color: var(--text);
   background: var(--bg);
 }
 
+.settings-item-textarea {
+  width: 100%;
+  max-width: 600px;
+  background: var(--input);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 12px;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0.42px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 100px;
+  transition: all 0.2s ease;
+}
+
+.settings-item-textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--bg);
+}
+
+.settings-item-value-multiline {
+  max-width: 600px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
 .settings-item-select {
   background: var(--panel);
   border: 1px solid var(--panel-border);
