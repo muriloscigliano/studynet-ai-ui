@@ -567,13 +567,12 @@ color: var(--text);
 
 /* Login Page */
 .login-page {
-  width: 100%;
-  max-width: 1704px;
-  min-height: 100vh;
-  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
   background: var(--bg);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .login-page-header {
@@ -582,6 +581,9 @@ color: var(--text);
   align-items: center;
   padding: 12px 24px;
   border-bottom: 1px solid var(--panel-border);
+  max-width: 1704px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .login-page-logo img {
@@ -611,6 +613,10 @@ color: var(--text);
   align-items: center;
   padding: 48px 24px;
   gap: 48px;
+  overflow-y: auto;
+  max-width: 1704px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .login-page-hero {

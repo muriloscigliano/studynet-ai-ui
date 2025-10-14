@@ -27,8 +27,8 @@ const signupLinkText = "Sign Up";
       </div>
       <button 
         class="login-page-close" 
-        data-navigate="/"
-        aria-label="Go back to home"
+        id="loginCloseBtn"
+        aria-label="Go back"
       >
         ✕
       </button>
@@ -115,5 +115,24 @@ const signupLinkText = "Sign Up";
       </p>
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const closeBtn = document.getElementById('loginCloseBtn');
+      
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          // Check if there's history to go back to
+          if (document.referrer && document.referrer !== window.location.href) {
+            // Go back to the previous page
+            window.history.back();
+          } else {
+            // No referrer, go to home page
+            window.location.href = '/';
+          }
+        });
+      }
+    });
+  </script>
 </Layout>
 
