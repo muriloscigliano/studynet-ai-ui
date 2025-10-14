@@ -141,10 +141,14 @@ const buttonItems = [
     messageDiv.appendChild(contentDiv);
     chatMessages.appendChild(messageDiv);
     
-    // Scroll to bottom
-    setTimeout(() => {
-      messageDiv.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    // Scroll to bottom with smooth easing
+    requestAnimationFrame(() => {
+      messageDiv.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'nearest'
+      });
+    });
   }
 
   function addTypingIndicator() {
@@ -162,9 +166,13 @@ const buttonItems = [
     messageDiv.appendChild(contentDiv);
     chatMessages.appendChild(messageDiv);
     
-    setTimeout(() => {
-      messageDiv.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    requestAnimationFrame(() => {
+      messageDiv.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'nearest'
+      });
+    });
   }
 
   function removeTypingIndicator() {
