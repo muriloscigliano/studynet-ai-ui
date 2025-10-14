@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import AppShell from "../components/AppShell.astro";
 import Header from "../components/Header.astro";
-import ChatComposer from "../components/ChatComposer";
+import ChatInterface from "../components/ChatInterface";
 import PageAnimations from "../components/PageAnimations";
 import AnimatedText from "../components/AnimatedText";
 import { ArrowUp } from "lucide-react";
@@ -25,40 +25,24 @@ const buttonItems = [
   "Upgrade Pro Plan",
   "Login",
 ];
-
-function onSend(value: string) {
-  // placeholder for future AI wiring
-  console.log("send:", value);
-}
 ---
 <Layout title="StudyNet">
   <AppShell>
     <Header loginText={buttonItems[1]} />
 
-    <section class="center container-max">
-      <div class="hero-header">
+    <section class="center container-max chat-page">
+      <div class="hero-header" id="hero-header">
         <div class="plan-pill">{copyItems[0]}</div>
         <div class="hero-title">
           <AnimatedText text={copyItems[1]} className="headline" delay={0.2} client:load />
           <AnimatedText text={copyItems[2]} className="subcopy" delay={0.4} client:load />
         </div>
       </div>
-      <div class="composer-wrapper">
-        <ChatComposer client:load onSend={onSend} />
-      </div>
-      <div class="chips">
-        {suggestions.map((s) => (
-          <button class="chip">
-            <span>{s}</span>
-            <span class="chip-icon">
-              <ArrowUp width={12} height={12} strokeWidth={2} style={{ color: 'var(--text)' }} />
-            </span>
-          </button>
-        ))}
-      </div>
+
+      <ChatInterface client:load suggestions={suggestions} />
     </section>
 
-    <div class="cta-row">
+    <div class="cta-row" id="cta-row">
       <button class="cta" data-navigate="/pricing">
         <span>{buttonItems[0]}</span>
         <span class="chip-icon">
@@ -70,3 +54,29 @@ function onSend(value: string) {
     <PageAnimations client:load />
   </AppShell>
 </Layout>
+
+<script>
+  // Listen for first message event to hide hero content
+  document.addEventListener('chat:firstMessage', () => {
+    const heroHeader = document.getElementById('hero-header');
+    const ctaRow = document.getElementById('cta-row');
+    
+    if (heroHeader) {
+      heroHeader.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      heroHeader.style.opacity = '0';
+      heroHeader.style.transform = 'translateY(-20px)';
+      setTimeout(() => {
+        heroHeader.style.display = 'none';
+      }, 300);
+    }
+    
+    if (ctaRow) {
+      ctaRow.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      ctaRow.style.opacity = '0';
+      ctaRow.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        ctaRow.style.display = 'none';
+      }, 300);
+    }
+  });
+</script>
