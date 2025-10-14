@@ -181,21 +181,7 @@ body {
 .chat-item:hover {
   color: var(--primary);
 }
-.settings-btn {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  border-radius: 500px;
-  background: none;
-  border: 1px solid transparent;
-}
 
-.settings-btn:hover {
-  background: var(--card);
-  border: 1px solid var(--panel-border);
-}
 .divider-bottom {
   margin-bottom: 18px;
 }
@@ -908,6 +894,22 @@ color: var(--text);
 }
 
 /* Settings Page */
+.settings-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 500px;
+  background: none;
+  border: 1px solid transparent;
+}
+
+.settings-btn:hover {
+  background: var(--card);
+  border: 1px solid var(--panel-border);
+}
+
 .settings-content {
   width: 100%;
   max-width: 800px;
@@ -915,7 +917,9 @@ color: var(--text);
   display: flex;
   flex-direction: column;
   gap: 48px;
-  padding: 32px 0;
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  padding-right: 12px;
 }
 
 .settings-section {
@@ -925,7 +929,7 @@ color: var(--text);
 }
 
 .settings-section-title {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
   letter-spacing: 0.42px;
   color: var(--text);
@@ -936,8 +940,9 @@ color: var(--text);
   display: flex;
   flex-direction: column;
   gap: 1px;
-  background: var(--panel-border);
-  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 18px;
   overflow: hidden;
 }
 
@@ -945,10 +950,11 @@ color: var(--text);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 24px;
-  background: var(--panel);
+  padding: 28px;
+  background: var(--card);
   gap: 24px;
   transition: background 0.2s ease;
+  border-bottom: 1px solid var(--panel-border);
 }
 
 .settings-item:hover {
