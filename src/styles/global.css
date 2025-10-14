@@ -195,6 +195,12 @@ body {
   overflow-y: auto;
 }
 .header-row {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  padding: 12px 0;
+  margin: -12px 0 12px 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
