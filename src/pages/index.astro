@@ -74,6 +74,55 @@ const buttonItems = [
   let hasStartedChat = false;
   let isWaitingForResponse = false;
 
+  function resetChat() {
+    // Reset state
+    hasStartedChat = false;
+    isWaitingForResponse = false;
+
+    // Clear messages
+    const chatMessages = document.getElementById('chat-messages');
+    if (chatMessages) {
+      chatMessages.innerHTML = '';
+      chatMessages.style.display = 'none';
+    }
+
+    // Show hero content again
+    const heroHeader = document.getElementById('hero-header');
+    const ctaRow = document.getElementById('cta-row');
+    const chipsContainer = document.getElementById('chips-container');
+    const composerWrapper = document.querySelector('.composer-wrapper') as HTMLElement;
+    const chatContainer = document.getElementById('chat-container') as HTMLElement;
+
+    if (heroHeader) {
+      heroHeader.style.display = '';
+      heroHeader.style.opacity = '1';
+      heroHeader.style.transform = 'translateY(0)';
+    }
+
+    if (ctaRow) {
+      ctaRow.style.display = '';
+      ctaRow.style.opacity = '1';
+      ctaRow.style.transform = 'translateY(0)';
+    }
+
+    if (chipsContainer) {
+      chipsContainer.style.display = '';
+      chipsContainer.style.opacity = '1';
+      chipsContainer.style.transform = 'translateY(0)';
+    }
+
+    if (composerWrapper && chatContainer) {
+      chatContainer.style.transition = '';
+      chatContainer.style.justifyContent = 'center';
+      chatContainer.style.alignItems = 'center';
+      composerWrapper.style.transition = '';
+      composerWrapper.style.marginTop = '';
+    }
+  }
+
+  // Listen for reset event from New Chat button
+  document.addEventListener('chat:reset', resetChat);
+
   function hideHeroContent() {
     const heroHeader = document.getElementById('hero-header');
     const ctaRow = document.getElementById('cta-row');
@@ -155,19 +204,15 @@ const buttonItems = [
     const chatMessages = document.getElementById('chat-messages');
     if (!chatMessages) return;
 
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'chat-message chat-message-assistant';
-    messageDiv.id = 'typing-indicator';
+    const indicatorDiv = document.createElement('div');
+    indicatorDiv.className = 'chat-thinking-indicator';
+    indicatorDiv.id = 'typing-indicator';
+    indicatorDiv.textContent = 'Thinking...';
     
-    const contentDiv = document.createElement('div');
-    contentDiv.className = 'chat-message-content';
-    contentDiv.innerHTML = '<div class="chat-thinking">Thinking...</div>';
-    
-    messageDiv.appendChild(contentDiv);
-    chatMessages.appendChild(messageDiv);
+    chatMessages.appendChild(indicatorDiv);
     
     requestAnimationFrame(() => {
-      messageDiv.scrollIntoView({ 
+      indicatorDiv.scrollIntoView({ 
         behavior: 'smooth',
         block: 'nearest',
         inline: 'nearest'

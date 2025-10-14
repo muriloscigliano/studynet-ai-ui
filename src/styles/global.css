@@ -1507,10 +1507,13 @@ color: var(--text);
   color: var(--text);
 }
 
-.chat-thinking {
+.chat-thinking-indicator {
   color: var(--muted);
+  font-size: 16px;
   font-style: italic;
+  padding: 8px 0;
   animation: thinkingPulse 1.5s ease-in-out infinite;
+  align-self: flex-start;
 }
 
 @keyframes thinkingPulse {

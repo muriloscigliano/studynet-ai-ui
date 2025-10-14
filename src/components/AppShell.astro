@@ -64,7 +64,14 @@ const copyItems = [
       const path = navButton.dataset.navigate;
       if (!path) return;
 
-      // Check if we're already on this page
+      // Special handling for New Chat button on home page
+      if (window.location.pathname === path && path === '/') {
+        // Trigger chat reset event instead of navigation
+        document.dispatchEvent(new CustomEvent('chat:reset'));
+        return;
+      }
+
+      // Check if we're already on this page (other pages)
       if (window.location.pathname === path) {
         console.log('Already on this page, skipping navigation');
         return;
