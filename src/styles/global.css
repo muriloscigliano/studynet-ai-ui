@@ -119,7 +119,7 @@ body {
 .new-chat {
   width: 100%;
   border-radius: 500px;
-  background: var(--chat-bg);
+  background: var(--primary);
   border: 1px solid var(--primary-border);
   color: var(--chat-text);
   padding: 8px 16px;
@@ -243,7 +243,7 @@ body {
 .login-trigger {
   background: var(--panel);
   border: 1px solid var(--panel-border);
-  border-radius: 12px;
+  border-radius: 500px;
   padding: 10px 20px;
   color: var(--text);
   font-size: 16px;
@@ -457,7 +457,7 @@ body {
 .cta {
   background: var(--panel);
   border: 1px solid var(--panel-border);
-  color: #d2d3dc;
+  color: var(--chip-text);
   border-radius: 999px;
   padding: 16px 24px;
   display: inline-flex;
@@ -665,18 +665,23 @@ color: var(--text);
 }
 
 .login-page-close {
-  width: 32px;
-  height: 32px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  color: var(--text);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 .login-page-close:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--bg);
+  color: var(--text);
+  border-color: var(--input-border);
 }
 
 .login-page-main {
