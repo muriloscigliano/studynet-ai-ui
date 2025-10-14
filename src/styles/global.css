@@ -202,7 +202,7 @@ body {
 
 .main {
   flex: 1 1 auto;
-  padding: 12px 24px;
+  padding: 12px;
   min-height: calc(100svh - 24px);
   display: grid;
   grid-template-rows: auto 1fr auto; /* header, center, cta */
@@ -212,8 +212,6 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
-  padding: 12px 0;
-  margin: -12px 0 12px 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -1192,7 +1190,7 @@ color: var(--text);
   height: 40px;
   background: var(--panel);
   border: 1px solid var(--panel-border);
-  border-radius: 12px;
+  border-radius: 500px;
   align-items: center;
   justify-content: center;
   color: var(--text);
@@ -1387,6 +1385,10 @@ color: var(--text);
 
   /* Very small screens adjustments */
   @media (max-width: 480px) {
+
+    .main {
+      padding: 0px 0px !important;
+    }
     .login-trigger {
       display: none;
     }
@@ -1420,8 +1422,8 @@ color: var(--text);
   }
 
   .main {
-    margin-left: 220px;
-    padding: 12px 20px;
+    padding: 0px 0px !important;
+
   }
 
   /* Index page */
