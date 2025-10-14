@@ -121,7 +121,7 @@ body {
   border-radius: 500px;
   background: var(--primary);
   border: 1px solid var(--primary-border);
-  color: var(--chat-text);
+  color: #fff;
   padding: 8px 16px;
   min-height: 40px;
   display: flex;
@@ -135,11 +135,21 @@ body {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(155, 32, 100, 0.3);
 }
-.new-chat .icon {
+
+.new-chat-icon {
   width: 24px;
   height: 24px;
-  border-radius: 12px;
-  background: rgba(255,255,255,0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.new-chat:hover .new-chat-icon {
+  background: rgba(255, 255, 255, 0.25);
 }
 .divider {
   height: 1px;
@@ -174,17 +184,15 @@ body {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 16px;
-  border-radius: 12px;
+  padding: 14px 18px;
+  border-radius: 500px;
+  background: none;
+  border: 1px solid transparent;
 }
+
 .settings-btn:hover {
-  background: rgba(255, 255, 255, 0.05);
-}
-.settings-btn .icon {
-  width: 17px;
-  height: 17px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 4px;
+  background: var(--card);
+  border: 1px solid var(--panel-border);
 }
 .divider-bottom {
   margin-bottom: 18px;
@@ -202,7 +210,7 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
 .theme-toggle-wrapper {
@@ -290,11 +298,13 @@ body {
   opacity: 0;
 }
 .plan-pill {
-  border: 1px solid #212339;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
   border-radius: 500px;
   padding: 10px 16px;
   color: var(--muted);
   letter-spacing: 0.48px;
+  font-size: 16px;
 }
 .headline {
   font-weight: 500;
@@ -442,11 +452,10 @@ body {
   background: var(--panel);
   border-color: var(--panel-border);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 .chip:hover .chip-icon {
   background: rgba(255, 255, 255, 0.2);
-  transform: rotate(90deg) translateX(2px);
 }
 
 /* CTA */
@@ -705,7 +714,8 @@ color: var(--text);
 
 .login-page-pill {
   display: inline-block;
-  border: 1px solid #212339;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
   border-radius: 500px;
   padding: 10px 16px;
   color: var(--muted);

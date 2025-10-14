@@ -1,5 +1,6 @@
 ---
 // Shared app shell with sidebar
+import { Plus, Settings } from "lucide-react";
 
 const copyItems = [
   "New Chat",
@@ -16,7 +17,9 @@ const copyItems = [
           <img src="https://dummyimage.com/122x36/FFFFFF/000000.png&text=StudyNet" alt="StudyNet" />
         </div>
         <button class="new-chat" data-navigate="/">
-          <span class="icon"></span>
+          <span class="new-chat-icon">
+            <Plus width={16} height={16} strokeWidth={2} />
+          </span>
           <span>{copyItems[0]}</span>
         </button>
         <div class="divider"></div>
@@ -31,7 +34,7 @@ const copyItems = [
       <div>
         <div class="divider divider-bottom"></div>
         <button class="settings-btn">
-          <span class="icon"></span>
+          <Settings width={17} height={17} strokeWidth={2} style={{ color: 'var(--muted)' }} />
           <span>{copyItems[2]}</span>
         </button>
       </div>
