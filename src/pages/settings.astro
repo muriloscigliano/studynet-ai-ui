@@ -1,0 +1,148 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AppShell from "../components/AppShell.astro";
+import Header from "../components/Header.astro";
+import PageAnimations from "../components/PageAnimations";
+import AnimatedText from "../components/AnimatedText";
+
+// Page content
+const pageTitle = "Settings — StudyNet.AI";
+
+// Hero section
+const heroPill = "Settings";
+const heroTitle = "Manage Your Account";
+const heroSubtitle = "Customize your experience and manage your preferences";
+
+// Account Section
+const accountSection = {
+  title: "Account",
+  items: [
+    {
+      label: "Profile Details",
+      description: "Update your name, email, and profile picture",
+      action: "Edit Profile"
+    },
+    {
+      label: "Plan",
+      description: "Free Plan • Upgrade to unlock advanced features",
+      action: "Upgrade to Pro"
+    },
+    {
+      label: "Payment Method",
+      description: "No payment method added",
+      action: "Add Payment"
+    }
+  ]
+};
+
+// Preferences Section
+const preferencesSection = {
+  title: "Preferences",
+  items: [
+    {
+      label: "Language",
+      description: "English",
+      action: "Change"
+    },
+    {
+      label: "Notifications",
+      description: "Email notifications enabled",
+      action: "Manage"
+    },
+    {
+      label: "Privacy",
+      description: "Control your data and privacy settings",
+      action: "Manage"
+    }
+  ]
+};
+
+// Personalization Section
+const personalizationSection = {
+  title: "Personalization",
+  items: [
+    {
+      label: "Theme",
+      description: "Automatically switch between light and dark mode",
+      action: "Customize"
+    },
+    {
+      label: "Study Goals",
+      description: "Set your academic and career goals",
+      action: "Set Goals"
+    },
+    {
+      label: "Interests",
+      description: "Customize your study recommendations",
+      action: "Update"
+    }
+  ]
+};
+---
+<Layout title={pageTitle}>
+  <AppShell>
+    <Header />
+
+    <section class="center container-max">
+      <div class="hero-header">
+        <div class="plan-pill">{heroPill}</div>
+        <div class="hero-title">
+          <AnimatedText text={heroTitle} className="headline" delay={0.2} client:load />
+          <AnimatedText text={heroSubtitle} className="subcopy" delay={0.4} client:load />
+        </div>
+      </div>
+
+      <div class="settings-content">
+        <!-- Account Section -->
+        <div class="settings-section">
+          <h2 class="settings-section-title">{accountSection.title}</h2>
+          <div class="settings-list">
+            {accountSection.items.map((item) => (
+              <div class="settings-item">
+                <div class="settings-item-info">
+                  <div class="settings-item-label">{item.label}</div>
+                  <div class="settings-item-description">{item.description}</div>
+                </div>
+                <button class="settings-item-action">{item.action}</button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Preferences Section -->
+        <div class="settings-section">
+          <h2 class="settings-section-title">{preferencesSection.title}</h2>
+          <div class="settings-list">
+            {preferencesSection.items.map((item) => (
+              <div class="settings-item">
+                <div class="settings-item-info">
+                  <div class="settings-item-label">{item.label}</div>
+                  <div class="settings-item-description">{item.description}</div>
+                </div>
+                <button class="settings-item-action">{item.action}</button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Personalization Section -->
+        <div class="settings-section">
+          <h2 class="settings-section-title">{personalizationSection.title}</h2>
+          <div class="settings-list">
+            {personalizationSection.items.map((item) => (
+              <div class="settings-item">
+                <div class="settings-item-info">
+                  <div class="settings-item-label">{item.label}</div>
+                  <div class="settings-item-description">{item.description}</div>
+                </div>
+                <button class="settings-item-action">{item.action}</button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+    <PageAnimations client:load />
+  </AppShell>
+</Layout>
+
