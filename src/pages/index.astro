@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import AppShell from "../components/AppShell.astro";
 import Header from "../components/Header.astro";
-import ChatInterface from "../components/ChatInterface";
+import ChatComposer from "../components/ChatComposer";
 import PageAnimations from "../components/PageAnimations";
 import AnimatedText from "../components/AnimatedText";
 import { ArrowUp } from "lucide-react";
@@ -30,7 +30,7 @@ const buttonItems = [
   <AppShell>
     <Header loginText={buttonItems[1]} />
 
-    <section class="center container-max chat-page">
+    <section class="center container-max" id="chat-container">
       <div class="hero-header" id="hero-header">
         <div class="plan-pill">{copyItems[0]}</div>
         <div class="hero-title">
@@ -38,8 +38,23 @@ const buttonItems = [
           <AnimatedText text={copyItems[2]} className="subcopy" delay={0.4} client:load />
         </div>
       </div>
-
-      <ChatInterface client:load suggestions={suggestions} />
+      
+      <!-- Chat messages area (hidden initially) -->
+      <div class="chat-messages-area" id="chat-messages" style="display: none;"></div>
+      
+      <div class="composer-wrapper">
+        <ChatComposer client:load />
+      </div>
+      <div class="chips" id="chips-container">
+        {suggestions.map((s) => (
+          <button class="chip chip-suggestion" data-suggestion={s}>
+            <span>{s}</span>
+            <span class="chip-icon">
+              <ArrowUp width={12} height={12} strokeWidth={2} style={{ color: 'var(--text)' }} />
+            </span>
+          </button>
+        ))}
+      </div>
     </section>
 
     <div class="cta-row" id="cta-row">
@@ -56,10 +71,15 @@ const buttonItems = [
 </Layout>
 
 <script>
-  // Listen for first message event to hide hero content
-  document.addEventListener('chat:firstMessage', () => {
+  let hasStartedChat = false;
+  let isWaitingForResponse = false;
+
+  function hideHeroContent() {
     const heroHeader = document.getElementById('hero-header');
     const ctaRow = document.getElementById('cta-row');
+    const chipsContainer = document.getElementById('chips-container');
+    const composerWrapper = document.querySelector('.composer-wrapper') as HTMLElement;
+    const chatContainer = document.getElementById('chat-container') as HTMLElement;
     
     if (heroHeader) {
       heroHeader.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
@@ -77,6 +97,123 @@ const buttonItems = [
       setTimeout(() => {
         ctaRow.style.display = 'none';
       }, 300);
+    }
+
+    if (chipsContainer) {
+      chipsContainer.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      chipsContainer.style.opacity = '0';
+      chipsContainer.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        chipsContainer.style.display = 'none';
+      }, 300);
+    }
+
+    // Move composer to bottom of main content area with smooth animation
+    if (composerWrapper && chatContainer) {
+      setTimeout(() => {
+        chatContainer.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        chatContainer.style.justifyContent = 'flex-start';
+        chatContainer.style.alignItems = 'stretch';
+        composerWrapper.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        composerWrapper.style.marginTop = 'auto';
+      }, 300);
+    }
+  }
+
+  function showChatMessages() {
+    const chatMessages = document.getElementById('chat-messages');
+    if (chatMessages) {
+      chatMessages.style.display = 'flex';
+    }
+  }
+
+  function addMessage(content: string, role: 'user' | 'assistant') {
+    const chatMessages = document.getElementById('chat-messages');
+    if (!chatMessages) return;
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `chat-message chat-message-${role}`;
+    
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'chat-message-content';
+    contentDiv.textContent = content;
+    
+    messageDiv.appendChild(contentDiv);
+    chatMessages.appendChild(messageDiv);
+    
+    // Scroll to bottom
+    setTimeout(() => {
+      messageDiv.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+
+  function addTypingIndicator() {
+    const chatMessages = document.getElementById('chat-messages');
+    if (!chatMessages) return;
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'chat-message chat-message-assistant';
+    messageDiv.id = 'typing-indicator';
+    
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'chat-message-content';
+    contentDiv.innerHTML = '<div class="chat-thinking">Thinking...</div>';
+    
+    messageDiv.appendChild(contentDiv);
+    chatMessages.appendChild(messageDiv);
+    
+    setTimeout(() => {
+      messageDiv.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  }
+
+  function removeTypingIndicator() {
+    const typingIndicator = document.getElementById('typing-indicator');
+    if (typingIndicator) {
+      typingIndicator.remove();
+    }
+  }
+
+  function handleSend(content: string) {
+    if (!content.trim() || isWaitingForResponse) return;
+
+    if (!hasStartedChat) {
+      hasStartedChat = true;
+      hideHeroContent();
+      setTimeout(() => {
+        showChatMessages();
+      }, 300);
+    }
+
+    // Add user message
+    addMessage(content, 'user');
+
+    // Show typing indicator
+    isWaitingForResponse = true;
+    addTypingIndicator();
+
+    // Simulate AI response
+    setTimeout(() => {
+      removeTypingIndicator();
+      addMessage('This is a placeholder response. The AI API will be integrated here later.', 'assistant');
+      isWaitingForResponse = false;
+    }, 1000);
+  }
+
+  // Listen for messages from ChatComposer
+  document.addEventListener('chat:send', ((e: CustomEvent) => {
+    handleSend(e.detail.content);
+  }) as EventListener);
+
+  // Handle chip clicks
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const chip = target.closest('.chip-suggestion') as HTMLElement;
+    if (chip) {
+      const suggestion = chip.dataset.suggestion;
+      if (suggestion) {
+        handleSend(suggestion);
+      }
     }
   });
 </script>

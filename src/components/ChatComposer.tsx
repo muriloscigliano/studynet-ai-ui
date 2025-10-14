@@ -28,6 +28,12 @@ export default function ChatComposer({ placeholder = "Ask anything here", onSend
   function submit() {
     const trimmed = value.trim();
     if (!trimmed) return;
+    
+    // Dispatch event for index.astro to handle
+    document.dispatchEvent(new CustomEvent('chat:send', { 
+      detail: { content: trimmed } 
+    }));
+    
     onSend?.(trimmed);
     setValue("");
   }
@@ -35,7 +41,16 @@ export default function ChatComposer({ placeholder = "Ask anything here", onSend
   return (
     <div className="composer">
       <div className="composer-inner">
-        <label htmlFor="composer" className="composer-label">{placeholder}</label>
+        {!value && <label htmlFor="composer" className="composer-label">{placeholder}</label>}
+        <textarea 
+          id="composer" 
+          ref={textareaRef} 
+          value={value} 
+          onChange={(e) => setValue(e.target.value)} 
+          onKeyDown={handleKeyDown}
+          placeholder=""
+          rows={1}
+        />
         <div className="composer-controls">
           <div className="tool-group">
             <button 
@@ -57,7 +72,6 @@ export default function ChatComposer({ placeholder = "Ask anything here", onSend
           </div>
           <button type="button" aria-label="Send" onClick={submit} className="send-btn"><ArrowUp width={16} height={16} strokeWidth={2} style={{ color: 'var(--button-arrow)' }} /></button>
         </div>
-        <textarea id="composer" ref={textareaRef} value={value} onChange={(e) => setValue(e.target.value)} onKeyDown={handleKeyDown} className="sr-only" />
       </div>
     </div>
   );
