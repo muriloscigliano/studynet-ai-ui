@@ -1,0 +1,59 @@
+---
+const { title = "StudyNet.AI" } = Astro.props;
+---
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <style is:global>
+      @import "../styles/global.css";
+    </style>
+  </head>
+  <body>
+    <slot />
+    <script>
+      (function () {
+        const root = document.documentElement;
+        const storageKey = 'themePreference'; // 'light' | 'dark' | 'system'
+        const mql = window.matchMedia('(prefers-color-scheme: light)');
+
+        function resolveMode(source: string) {
+          if (source === 'system') return mql.matches ? 'light' : 'dark';
+          return source;
+        }
+
+        function applyTheme(source: string) {
+          const mode = resolveMode(source);
+          root.dataset.theme = mode;
+        }
+
+        let pref = localStorage.getItem(storageKey) || 'system';
+        applyTheme(pref);
+
+        // If following system, react to OS changes
+        mql.addEventListener('change', () => {
+          const current = localStorage.getItem(storageKey) || 'system';
+          if (current === 'system') applyTheme('system');
+        });
+
+        document.addEventListener('click', function (e) {
+          const t = e.target;
+          if (!(t instanceof Element)) return;
+          if (t.id === 'themeToggle' || t.closest('#themeToggle')) {
+            const current = localStorage.getItem(storageKey) || 'system';
+            // Toggle: if on system, flip to the opposite of current visual mode; otherwise toggle explicit modes
+            let next;
+            if (current === 'system') {
+              next = root.dataset.theme === 'light' ? 'dark' : 'light';
+            } else {
+              next = current === 'light' ? 'dark' : 'light';
+            }
+            localStorage.setItem(storageKey, next);
+            applyTheme(next);
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AppShell from "../components/AppShell.astro";
+import PageAnimations from "../components/PageAnimations";
+import AnimatedText from "../components/AnimatedText";
+
+// Page content
+const pageTitle = "Pricing — StudyNet.AI";
+
+// Hero section
+const heroPill = "Pricing Plan";
+const heroTitle = "Studynet.AI Pro";
+const heroSubtitle = "Choose the plan that fits your study goals.\nUpgrade anytime for smarter tools and personalised insights.";
+
+// Free Plan
+const freePlan = {
+  name: "Basic Plan",
+  description: "Start exploring courses and guidance — no cost, no commitment.",
+  price: "FREE",
+  features: [
+    "Ask unlimited study questions",
+    "Explore universities and programs",
+    "Access basic AI recommendations",
+  ],
+  cta: "Use for free",
+};
+
+// Pro Plan
+const proPlan = {
+  name: "Pro Plan",
+  description: "Get personalized course matches and advanced insights for your study journey.",
+  price: "$9.90",
+  period: "/ month",
+  features: [
+    "Smart university matching",
+    "Real-time tuition and scholarship insights",
+    "Application tracking and AI study assistant",
+  ],
+  cta: "Upgrade Pro Plan",
+};
+
+// Footer caption
+const footerCaption = "From exploration to application — smarter with AI.";
+---
+<Layout title={pageTitle}>
+  <AppShell>
+    <div class="header-row">
+      <button class="header-icon" id="themeToggle" aria-label="Toggle theme"></button>
+    </div>
+
+    <section class="center container-max" aria-labelledby="pricing-title">
+      <div class="hero-header">
+        <div class="plan-pill">{heroPill}</div>
+        <div class="hero-title">
+          <AnimatedText text={heroTitle} className="headline" delay={0.2} client:load />
+          <AnimatedText text={heroSubtitle.replace('\n', ' ')} className="subcopy" delay={0.4} client:load />
+        </div>
+      </div>
+
+      <div class="plans-grid">
+        <!-- Free Plan -->
+        <div class="plan-card">
+            <div class="plan-summary">
+              <div class="pricing-label">{freePlan.name}</div>
+              <p class="subcopy">{freePlan.description}</p>
+            </div>
+            <div class="headline plan-price">{freePlan.price}</div>
+            <div class="plan-divider"></div>
+            <div class="plan-features">
+              {freePlan.features.map((feature) => (
+                <div class="plan-feature">
+                  <span class="plan-dot"></span>
+                  <span>{feature}</span>
+                </div>
+              ))}
+            </div>
+            <div class="plan-cta">
+              <button class="cta princing-btn" aria-label={freePlan.cta}>
+                <span>{freePlan.cta}</span>
+              </button>
+            </div>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="plan-card">
+            <div class="plan-summary">
+              <div class="pricing-label">{proPlan.name}</div>
+              <p class="subcopy">{proPlan.description}</p>
+            </div>
+            <div class="plan-price-row">
+              <div class="headline plan-price-amount">{proPlan.price}</div>
+              <div class="plan-price-period">{proPlan.period}</div>
+            </div>
+            <div class="plan-divider"></div>
+            <div class="plan-features">
+              {proPlan.features.map((feature) => (
+                <div class="plan-feature">
+                  <span class="plan-dot"></span>
+                  <span>{feature}</span>
+                </div>
+              ))}
+            </div>
+            <div class="plan-cta">
+              <button class="cta princing-btn pro-btn" aria-label={proPlan.cta}>
+                <span>{proPlan.cta}</span>
+              </button>
+            </div>
+        </div>
+      </div>
+
+      <p class="subcopy plan-caption">{footerCaption}</p>
+    </section>
+
+    <PageAnimations client:load />
+  </AppShell>
+</Layout>
+

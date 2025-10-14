@@ -1,0 +1,123 @@
+---
+// Shared app shell with sidebar
+---
+<div class="page">
+  <div class="shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div>
+        <div class="logo">
+          <img src="https://dummyimage.com/122x36/FFFFFF/000000.png&text=StudyNet" alt="StudyNet" />
+        </div>
+        <button class="new-chat" data-navigate="/">
+          <span class="icon"></span>
+          <span>New Chat</span>
+        </button>
+        <div class="divider"></div>
+        <div class="section-title">Chats</div>
+        <ul class="chats-list">
+          <li class="chat-item">Best nurse degree...</li>
+          <li class="chat-item">Sydney universities d...</li>
+          <li class="chat-item">Emerging Careers in..</li>
+          <li class="chat-item">Search Chat</li>
+        </ul>
+      </div>
+      <div>
+        <div class="divider divider-bottom"></div>
+        <button class="settings-btn">
+          <span class="icon"></span>
+          <span>Settings</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main content (swappable) -->
+    <main class="main" id="main-content">
+      <slot />
+    </main>
+  </div>
+</div>
+
+<script>
+  // SPA-style navigation without full page reload
+  function setupNavigation() {
+    const mainContent = document.getElementById('main-content');
+    if (!mainContent) return;
+
+    // Intercept clicks on [data-navigate] elements
+    document.addEventListener('click', async (e) => {
+      const target = e.target as HTMLElement;
+      const navButton = target.closest('[data-navigate]') as HTMLElement;
+      
+      if (!navButton) return;
+      
+      e.preventDefault();
+      const path = navButton.dataset.navigate;
+      if (!path) return;
+
+      try {
+        // Fetch the new page
+        const response = await fetch(path);
+        const html = await response.text();
+        
+        // Parse and extract main content
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newMain = doc.getElementById('main-content');
+        
+        if (newMain) {
+          // Swap content
+          mainContent.innerHTML = newMain.innerHTML;
+          
+          // Update URL
+          history.pushState({ path }, '', path);
+          
+          // Re-run scripts in new content
+          executeScripts(mainContent);
+        }
+      } catch (error) {
+        console.error('Navigation error:', error);
+      }
+    });
+
+    // Handle browser back/forward
+    window.addEventListener('popstate', async (e) => {
+      const path = e.state?.path || location.pathname;
+      
+      try {
+        const response = await fetch(path);
+        const html = await response.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const newMain = doc.getElementById('main-content');
+        
+        if (newMain) {
+          mainContent.innerHTML = newMain.innerHTML;
+          executeScripts(mainContent);
+        }
+      } catch (error) {
+        console.error('Popstate error:', error);
+      }
+    });
+  }
+
+  function executeScripts(container: HTMLElement) {
+    const scripts = container.querySelectorAll('script');
+    scripts.forEach((oldScript) => {
+      const newScript = document.createElement('script');
+      Array.from(oldScript.attributes).forEach((attr) =>
+        newScript.setAttribute(attr.name, attr.value)
+      );
+      newScript.textContent = oldScript.textContent;
+      oldScript.parentNode?.replaceChild(newScript, oldScript);
+    });
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupNavigation);
+  } else {
+    setupNavigation();
+  }
+</script>
+
