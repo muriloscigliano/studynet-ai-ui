@@ -37,22 +37,36 @@ const { title = "StudyNet.AI" } = Astro.props;
           if (current === 'system') applyTheme('system');
         });
 
+        function updateToggleButtons() {
+          const mode = root.dataset.theme;
+          document.querySelectorAll('.theme-toggle-btn').forEach((btn) => {
+            const btnTheme = btn.getAttribute('data-theme');
+            if (btnTheme === mode) {
+              btn.classList.add('active');
+            } else {
+              btn.classList.remove('active');
+            }
+          });
+        }
+
         document.addEventListener('click', function (e) {
           const t = e.target;
           if (!(t instanceof Element)) return;
-          if (t.id === 'themeToggle' || t.closest('#themeToggle')) {
-            const current = localStorage.getItem(storageKey) || 'system';
-            // Toggle: if on system, flip to the opposite of current visual mode; otherwise toggle explicit modes
-            let next;
-            if (current === 'system') {
-              next = root.dataset.theme === 'light' ? 'dark' : 'light';
-            } else {
-              next = current === 'light' ? 'dark' : 'light';
+          
+          // Handle theme toggle buttons
+          const themeBtn = t.closest('.theme-toggle-btn');
+          if (themeBtn) {
+            const targetTheme = themeBtn.getAttribute('data-theme');
+            if (targetTheme) {
+              localStorage.setItem(storageKey, targetTheme);
+              applyTheme(targetTheme);
+              updateToggleButtons();
             }
-            localStorage.setItem(storageKey, next);
-            applyTheme(next);
           }
         });
+
+        // Initial button state
+        updateToggleButtons();
       })();
     </script>
   </body>

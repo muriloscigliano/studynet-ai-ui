@@ -36,6 +36,7 @@
   --chat-border: #9b2064;;
   --chat-text: #e9e9ee;
   --chip-text: #FBFBFF;
+  --button-arrow: #FBFBFF;
 }
 
 [data-theme="light"] {
@@ -55,6 +56,7 @@
   --chat-text: #0f1222;
   --chat-composer-bg: #F6F6FC;
   --chip-text: #2C2F4A;
+  --button-arrow: #FBFBFF;
   /* brand stays the same */
 }
 
@@ -203,6 +205,41 @@ body {
   gap: 12px;
 }
 
+.theme-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  padding: 2px;
+  gap: 2px;
+}
+
+.theme-toggle-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle-btn:hover {
+  color: var(--text);
+}
+
+.theme-toggle-btn.active {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--input-border);
+}
+
 .login-trigger {
   background: var(--panel);
   border: 1px solid var(--panel-border);
@@ -310,10 +347,36 @@ body {
   align-items: center;
   height: 40px;
   border-radius: 999px;
-  background: var(--bg);
-  border: 1px solid var(--input-border);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
   padding: 2px;
+  gap: 2px;
 }
+
+.toggle-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  color: var(--text);
+}
+
+.toggle-btn.active {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--input-border);
+}
+
 .circle {
   width: 36px;
   height: 36px;

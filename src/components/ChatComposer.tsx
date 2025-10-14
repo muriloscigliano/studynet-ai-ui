@@ -8,6 +8,7 @@ type ChatComposerProps = {
 
 export default function ChatComposer({ placeholder = "Ask anything here", onSend }: ChatComposerProps) {
   const [value, setValue] = useState("");
+  const [activeMode, setActiveMode] = useState<'ai' | 'search'>('ai');
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
@@ -37,10 +38,24 @@ export default function ChatComposer({ placeholder = "Ask anything here", onSend
         <label htmlFor="composer" className="composer-label">{placeholder}</label>
         <div className="composer-controls">
           <div className="tool-group">
-            <div className="circle bg"><Sparkles width={14} height={14} strokeWidth={2} style={{ color: 'var(--muted)' }} /></div>
-            <button type="button" className="circle" aria-label="Open search"><Search width={16} height={16} strokeWidth={2} style={{ color: 'var(--muted)' }} /></button>
+            <button 
+              type="button" 
+              className={`toggle-btn ${activeMode === 'ai' ? 'active' : ''}`}
+              onClick={() => setActiveMode('ai')}
+              aria-label="AI mode"
+            >
+              <Sparkles width={14} height={14} strokeWidth={2} />
+            </button>
+            <button 
+              type="button" 
+              className={`toggle-btn ${activeMode === 'search' ? 'active' : ''}`}
+              onClick={() => setActiveMode('search')}
+              aria-label="Search mode"
+            >
+              <Search width={16} height={16} strokeWidth={2} />
+            </button>
           </div>
-          <button type="button" aria-label="Send" onClick={submit} className="send-btn"><ArrowUp width={16} height={16} strokeWidth={2} style={{ color: 'var(--text)' }} /></button>
+          <button type="button" aria-label="Send" onClick={submit} className="send-btn"><ArrowUp width={16} height={16} strokeWidth={2} style={{ color: 'var(--button-arrow)' }} /></button>
         </div>
         <textarea id="composer" ref={textareaRef} value={value} onChange={(e) => setValue(e.target.value)} onKeyDown={handleKeyDown} className="sr-only" />
       </div>
