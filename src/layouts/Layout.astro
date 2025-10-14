@@ -49,6 +49,9 @@ const { title = "StudyNet.AI" } = Astro.props;
           });
         }
 
+        // Expose globally for navigation updates
+        window.updateThemeToggleButtons = updateToggleButtons;
+
         document.addEventListener('click', function (e) {
           const t = e.target;
           if (!(t instanceof Element)) return;

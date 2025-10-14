@@ -89,6 +89,13 @@ const copyItems = [
           
           // Re-run scripts in new content
           executeScripts(mainContent);
+          
+          // Update theme toggle button states
+          setTimeout(() => {
+            if (window.updateThemeToggleButtons) {
+              window.updateThemeToggleButtons();
+            }
+          }, 10);
         }
       } catch (error) {
         console.error('Navigation error:', error);
@@ -109,6 +116,13 @@ const copyItems = [
         if (newMain) {
           mainContent.innerHTML = newMain.innerHTML;
           executeScripts(mainContent);
+          
+          // Update theme toggle button states
+          setTimeout(() => {
+            if (window.updateThemeToggleButtons) {
+              window.updateThemeToggleButtons();
+            }
+          }, 10);
         }
       } catch (error) {
         console.error('Popstate error:', error);
