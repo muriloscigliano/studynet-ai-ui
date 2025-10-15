@@ -50,7 +50,7 @@ const { title = "StudyNet.AI" } = Astro.props;
         }
 
         // Expose globally for navigation updates
-        window.updateThemeToggleButtons = updateToggleButtons;
+        (window as any).updateThemeToggleButtons = updateToggleButtons;
 
         document.addEventListener('click', function (e) {
           const t = e.target;

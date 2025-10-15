@@ -21,24 +21,24 @@ const accountSection = {
     {
       label: "Name",
       value: "John Doe",
-      type: "input"
+      type: "input" as const
     },
     {
       label: "Email",
       value: "john.doe@example.com",
-      type: "input"
+      type: "input" as const
     },
     {
       label: "Plan",
       value: "Free Plan",
-      type: "action",
+      type: "action" as const,
       action: "Upgrade to Pro",
       isPrimary: true
     },
     {
       label: "Payment Method",
       value: "No payment method added",
-      type: "action",
+      type: "action" as const,
       action: "Add Payment"
     }
   ]
@@ -51,24 +51,24 @@ const preferencesSection = {
     {
       label: "Language",
       value: "English",
-      type: "select",
+      type: "select" as const,
       options: ["English", "Spanish", "French", "German", "Portuguese"]
     },
     {
       label: "Theme Mode",
       value: "System",
-      type: "select",
+      type: "select" as const,
       options: ["System", "Dark", "Light"]
     },
     {
       label: "Email Notifications",
       value: true,
-      type: "toggle"
+      type: "toggle" as const
     },
     {
       label: "Marketing Emails",
       value: false,
-      type: "toggle"
+      type: "toggle" as const
     }
   ]
 };
@@ -80,19 +80,19 @@ const personalizationSection = {
     {
       label: "About Me",
       value: "I'm a student looking to pursue higher education in Computer Science. I'm interested in AI and machine learning, and I'd love to study in Australia or the UK.",
-      type: "textarea",
+      type: "textarea" as const,
       placeholder: "Tell us about yourself, your goals, and what you're looking for..."
     },
     {
       label: "Study Goal",
       value: "Undergraduate Degree",
-      type: "select",
+      type: "select" as const,
       options: ["Undergraduate Degree", "Graduate Degree", "Certificate", "Language Course", "Exchange Program"]
     },
     {
       label: "Country of Interest",
       value: "Australia",
-      type: "select",
+      type: "select" as const,
       options: ["Australia", "United States", "United Kingdom", "Canada", "Germany", "Other"]
     }
   ]
@@ -121,9 +121,9 @@ const personalizationSection = {
                 label={item.label}
                 value={item.value}
                 type={item.type}
-                options={item.options}
-                action={item.action}
-                isPrimary={item.isPrimary}
+                options={'options' in item ? (item.options as string[]) : undefined}
+                action={'action' in item ? item.action : undefined}
+                isPrimary={'isPrimary' in item ? item.isPrimary : undefined}
                 client:load
               />
             ))}

@@ -134,9 +134,25 @@ body {
   height: calc(100svh - 24px);
 }
 .logo {
-  width: 122px;
-  height: 36px;
+  width: 100%;
   margin-bottom: 24px;
+}
+
+/* Logo theme switching */
+.logo-dark {
+  display: block;
+}
+
+.logo-light {
+  display: none;
+}
+
+[data-theme="light"] .logo-dark {
+  display: none;
+}
+
+[data-theme="light"] .logo-light {
+  display: block;
 }
 .new-chat {
   width: 100%;
