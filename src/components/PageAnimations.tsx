@@ -26,7 +26,7 @@ export default function PageAnimations() {
     if (planPill) gsap.set(planPill, { opacity: 0, scale: 0.8, y: -20 });
     if (headlines.length) gsap.set(headlines, { opacity: 0, filter: 'blur(30px)' });
     if (subcopy.length) gsap.set(subcopy, { opacity: 0, filter: 'blur(30px)' });
-    if (composerWrapper || composer) gsap.set([composerWrapper, composer].filter(Boolean), { y: 50, opacity: 0 });
+    if (composerWrapper || composer) gsap.set([composerWrapper, composer].filter(Boolean), { y: 0, opacity: 0 });
     if (chips.length) gsap.set(chips, { opacity: 0, y: 10 });
     if (planCards.length) gsap.set(planCards, { opacity: 0, y: 30 });
 
