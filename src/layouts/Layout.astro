@@ -1,5 +1,5 @@
 ---
-import PlasmaBackground from "../components/PlasmaBackground";
+import PlasmaBackground from "../components/PlasmaBackground.astro";
 
 const { title = "StudyNet.AI" } = Astro.props;
 ---
@@ -13,7 +13,7 @@ const { title = "StudyNet.AI" } = Astro.props;
     </style>
   </head>
   <body>
-    <PlasmaBackground client:load />
+    <PlasmaBackground />
     <slot />
     <script>
       (function () {
