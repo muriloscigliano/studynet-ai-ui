@@ -1406,8 +1406,6 @@ color: var(--text);
   .chip {
     font-size: 13px;
     padding: 10px 14px;
-    flex: 1 1 auto;
-    min-width: calc(50% - 4px);
     justify-content: center;
   }
 
