@@ -785,6 +785,7 @@ color: var(--text);
   max-width: 1704px;
   width: 100%;
   margin: 0 auto;
+  position: relative;
 }
 
 .login-page-hero {
