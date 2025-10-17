@@ -121,6 +121,7 @@ body {
   gap: 12px;
   padding: 12px;
   height: 100%;
+  position: relative;
 }
 
 .sidebar {
