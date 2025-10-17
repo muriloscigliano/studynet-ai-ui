@@ -1307,13 +1307,12 @@ color: var(--text);
   .main {
     margin-left: 0;
     width: 100%;
-    padding: 12px 0;
   }
 
-  /* Adjust shell layout - sidebar is position:fixed so shell only needs main */
+  /* Adjust shell layout - keep flex but sidebar is position:fixed */
   .shell {
-    display: block;
-    padding: 0;
+    display: flex;
+    padding: 12px;
   }
 
   /* Header adjustments */
