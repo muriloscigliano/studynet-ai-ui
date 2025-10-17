@@ -724,11 +724,10 @@ color: var(--text);
 /* Login Page */
 .login-page {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background: var(--bg);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .login-page-header {
@@ -779,7 +778,6 @@ color: var(--text);
   justify-content: center;
   padding: 48px 24px;
   gap: 48px;
-  overflow-y: auto;
   max-width: 1704px;
   width: 100%;
   margin: 0 auto;
