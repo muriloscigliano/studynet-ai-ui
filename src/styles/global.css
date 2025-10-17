@@ -723,7 +723,7 @@ color: var(--text);
 
 /* Login Page */
 .login-page {
-  width: 100vw;
+  width: 100%;
   min-height: 100vh;
   background: var(--bg);
   display: flex;
@@ -1434,13 +1434,43 @@ color: var(--text);
   }
 
   /* Login page mobile */
+  .login-page-header {
+    padding: 12px 16px;
+  }
+
+  .login-page-main {
+    padding: 24px 16px;
+    gap: 32px;
+  }
+
+  .login-page-title {
+    font-size: 32px;
+    letter-spacing: 0.96px;
+  }
+
+  .login-page-pill {
+    font-size: 14px;
+    padding: 8px 14px;
+    margin-bottom: 16px;
+  }
+
   .login-page-card {
     max-width: 100%;
     padding: 24px;
   }
 
-  .login-page-main {
-    padding: 24px 16px;
+  .login-page-footer {
+    font-size: 14px;
+    letter-spacing: 0.42px;
+  }
+
+  .login-page-btn {
+    font-size: 18px;
+    margin-bottom: 24px;
+  }
+
+  .login-page-social {
+    margin-bottom: 32px;
   }
 
   /* Very small screens adjustments */
@@ -1459,6 +1489,25 @@ color: var(--text);
 
     .subcopy {
       font-size: 15px;
+    }
+
+    /* Login page extra small */
+    .login-page-main {
+      padding: 20px 12px;
+      gap: 24px;
+    }
+
+    .login-page-title {
+      font-size: 28px;
+      letter-spacing: 0.84px;
+    }
+
+    .login-page-card {
+      padding: 20px;
+    }
+
+    .login-page-footer {
+      font-size: 13px;
     }
 
   }
