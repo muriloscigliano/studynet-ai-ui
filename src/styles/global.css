@@ -1285,6 +1285,9 @@ color: var(--text);
     width: 280px;
     z-index: 1000;
     transition: left 0.3s ease;
+    /* Force out of flex flow */
+    flex: 0 0 0;
+    min-width: 0;
   }
 
   .sidebar.mobile-open {
@@ -1307,9 +1310,10 @@ color: var(--text);
   .main {
     margin-left: 0;
     width: 100%;
+    flex: 1;
   }
 
-  /* Adjust shell layout - keep flex but sidebar is position:fixed */
+  /* Shell stays flex but sidebar takes no space */
   .shell {
     display: flex;
     padding: 12px;
